@@ -13,6 +13,7 @@ namespace OnlineAuctionApp.ProductAPI.DataAccess.Concrete
             var databaseClient = client.GetDatabase(productDatabaseSettings.DatabaseName);
 
             Products = databaseClient.GetCollection<Product>(productDatabaseSettings.CollectionName);
+            SeedDatas.SeedData(Products);
         }
         public IMongoCollection<Product> Products { get; set; }
     }

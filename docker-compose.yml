@@ -1,0 +1,11 @@
+version: '3.4'
+
+services:
+  sourcingdb:
+    image: mongo
+
+  onlineauctionapp.productapi:
+    image: ${DOCKER_REGISTRY-}onlineauctionappproductapi
+    build:
+      context: .
+      dockerfile: src/Services/Products/OnlineAuctionApp.ProductAPI/Dockerfile

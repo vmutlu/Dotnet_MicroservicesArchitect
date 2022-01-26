@@ -20,11 +20,13 @@ namespace OnlineAuctionApp.ProductAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<ProductDatabaseSettings>(Configuration.GetSection(nameof(ProductDatabaseSettings)));
+            services.Configure<ProductDatabaseSettings>(Configuration.GetSection("ProductDatabase"));
 
             services.AddSingleton<IProductDatabaseSettings>(s => s.GetRequiredService<IOptions<ProductDatabaseSettings>>().Value);
 
             services.AddScoped<IProductContext, ProductContext>();
+
+            services.AddScoped<IRepository, Repository>();
 
             services.AddControllers();
 
