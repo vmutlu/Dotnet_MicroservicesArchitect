@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using OnlineAuctionApp.ProductAPI.DataAccess.Abstract;
+using OnlineAuctionApp.ProductAPI.DataAccess.Concrete;
 using OnlineAuctionApp.ProductAPI.Settings.Abstract;
 using OnlineAuctionApp.ProductAPI.Settings.Concrete;
 
@@ -21,6 +23,8 @@ namespace OnlineAuctionApp.ProductAPI
             services.Configure<ProductDatabaseSettings>(Configuration.GetSection(nameof(ProductDatabaseSettings)));
 
             services.AddSingleton<IProductDatabaseSettings>(s => s.GetRequiredService<IOptions<ProductDatabaseSettings>>().Value);
+
+            services.AddScoped<IProductContext, ProductContext>();
 
             services.AddControllers();
 
