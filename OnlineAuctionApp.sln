@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auctions", "Auctions", "{B3
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4A130686-0F9D-4C17-A325-F4ECB38E54E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuctionApp.AuctionAPI", "src\Services\Auctions\OnlineAuctionApp.AuctionAPI\OnlineAuctionApp.AuctionAPI.csproj", "{ED20275A-FEA0-41C2-917C-E0C502287576}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{4A130686-0F9D-4C17-A325-F4ECB38E54E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A130686-0F9D-4C17-A325-F4ECB38E54E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A130686-0F9D-4C17-A325-F4ECB38E54E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED20275A-FEA0-41C2-917C-E0C502287576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED20275A-FEA0-41C2-917C-E0C502287576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED20275A-FEA0-41C2-917C-E0C502287576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED20275A-FEA0-41C2-917C-E0C502287576}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{E8E23782-4F0C-45AC-A251-9FF821B307AB} = {B2C1E62D-BCDE-4120-9D1C-E3D3B356C6B6}
 		{016D600F-F8FF-42FA-A92F-5D46EF7A01D2} = {B2C1E62D-BCDE-4120-9D1C-E3D3B356C6B6}
 		{B34FC735-A5AA-4A71-A53C-FE054CCC808F} = {B2C1E62D-BCDE-4120-9D1C-E3D3B356C6B6}
+		{ED20275A-FEA0-41C2-917C-E0C502287576} = {B34FC735-A5AA-4A71-A53C-FE054CCC808F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A30B971-6C88-486F-951C-E15F9F34EAE5}
