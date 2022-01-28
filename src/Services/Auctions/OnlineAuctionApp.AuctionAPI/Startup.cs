@@ -31,6 +31,8 @@ namespace OnlineAuctionApp.AuctionAPI
 
             services.AddScoped<IAuctionRepository, AuctionRepository>();
 
+            services.AddScoped<IBidRepository, BidRepository>();
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
