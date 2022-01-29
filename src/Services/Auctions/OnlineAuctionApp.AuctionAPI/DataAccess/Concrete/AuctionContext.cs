@@ -14,6 +14,8 @@ namespace OnlineAuctionApp.AuctionAPI.DataAccess.Concrete
 
             Auctions = databaseClient.GetCollection<Auction>(nameof(Auction));
             Bids = databaseClient.GetCollection<Bid>(nameof(Bid));
+
+            SeedDatas.SeedData(Auctions);
         }
         public IMongoCollection<Auction> Auctions { get; set; }
         public IMongoCollection<Bid> Bids { get; set; }

@@ -30,7 +30,7 @@ namespace OnlineBidApp.BidAPI.Controllers
             return Ok(bids);
         }
 
-        [HttpGet("{id:length(24)}")]
+        [HttpGet("GetWinnerBid/{id:length(24)}")]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Bid), statusCode: (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Bid>> GetWinnerBid(string id)

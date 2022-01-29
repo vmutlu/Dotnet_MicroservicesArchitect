@@ -9,3 +9,10 @@ services:
     build:
       context: .
       dockerfile: src/Services/Products/OnlineAuctionApp.ProductAPI/Dockerfile
+
+  onlineauctionapp.auctionapi:
+    image: ${DOCKER_REGISTRY-}onlineauctionappauctionapi
+    build:
+      context: .
+      dockerfile: src/Services/Auctions/OnlineAuctionApp.AuctionAPI/Dockerfile
+
