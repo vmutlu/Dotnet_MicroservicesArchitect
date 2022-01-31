@@ -3,6 +3,9 @@ version: '3.4'
 services:
   sourcingdb:
     image: mongo
+    
+  rabbitmq:
+    image: rabbitmq:3.8.14-management
 
   onlineauctionapp.productapi:
     image: ${DOCKER_REGISTRY-}onlineauctionappproductapi

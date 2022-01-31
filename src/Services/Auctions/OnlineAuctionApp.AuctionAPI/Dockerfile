@@ -7,6 +7,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["src/Services/Auctions/OnlineAuctionApp.AuctionAPI/OnlineAuctionApp.AuctionAPI.csproj", "src/Services/Auctions/OnlineAuctionApp.AuctionAPI/"]
+COPY ["src/Services/Commons/OnlineAuctionApp.Core/OnlineAuctionApp.Core.csproj", "src/Services/Commons/OnlineAuctionApp.Core/"]
 RUN dotnet restore "src/Services/Auctions/OnlineAuctionApp.AuctionAPI/OnlineAuctionApp.AuctionAPI.csproj"
 COPY . .
 WORKDIR "/src/src/Services/Auctions/OnlineAuctionApp.AuctionAPI"

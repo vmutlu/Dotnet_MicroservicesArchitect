@@ -14,6 +14,7 @@ using OnlineAuctionApp.Core.Abstract;
 using OnlineAuctionApp.Core.Concrete;
 using OnlineAuctionApp.Core.Producer;
 using RabbitMQ.Client;
+using System;
 
 namespace OnlineAuctionApp.AuctionAPI
 {
@@ -35,6 +36,15 @@ namespace OnlineAuctionApp.AuctionAPI
 
             services.AddScoped<IBidRepository, BidRepository>();
 
+            services.AddAutoMapper(typeof(Startup));
+
+            services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OnlineAuctionApp.AuctionAPI", Version = "v1" });
+            });
+
             #region Event Bus Configuration
 
             services.AddSingleton<IRabbitMQConnection>(c =>
@@ -54,7 +64,7 @@ namespace OnlineAuctionApp.AuctionAPI
 
                 var retryCount = 5;
                 if (!string.IsNullOrWhiteSpace(Configuration["EventBus:RetryCount"]))
-                    retryCount = int.Parse(Configuration["EventBus:RetryCount"]);
+                    retryCount = Convert.ToInt32(Configuration["EventBus:RetryCount"]);
 
                 return new RabbitMQConnection(factory, retryCount, logger);
             });
@@ -66,13 +76,6 @@ namespace OnlineAuctionApp.AuctionAPI
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-            });
-
-            services.AddControllers();
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OnlineAuctionApp.AuctionAPI", Version = "v1" });
             });
         }
 
