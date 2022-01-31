@@ -3,12 +3,17 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using OnlineAuctionApp.AuctionAPI.DataAccess.Abstract;
 using OnlineAuctionApp.AuctionAPI.DataAccess.Concrete;
 using OnlineAuctionApp.AuctionAPI.Settings.Abstract;
 using OnlineAuctionApp.AuctionAPI.Settings.Concrete;
+using OnlineAuctionApp.Core.Abstract;
+using OnlineAuctionApp.Core.Concrete;
+using OnlineAuctionApp.Core.Producer;
+using RabbitMQ.Client;
 
 namespace OnlineAuctionApp.AuctionAPI
 {
@@ -30,6 +35,39 @@ namespace OnlineAuctionApp.AuctionAPI
 
             services.AddScoped<IBidRepository, BidRepository>();
 
+            #region Event Bus Configuration
+
+            services.AddSingleton<IRabbitMQConnection>(c =>
+            {
+                var logger = c.GetRequiredService<ILogger<RabbitMQConnection>>();
+
+                var factory = new ConnectionFactory()
+                {
+                    HostName = Configuration["EventBus:HostName"]
+                };
+
+                if (!string.IsNullOrWhiteSpace(Configuration["EventBus:UserName"]))
+                    factory.UserName = Configuration["EventBus:UserName"];
+
+                if (!string.IsNullOrWhiteSpace(Configuration["EventBus:Password"]))
+                    factory.Password = Configuration["EventBus:Password"];
+
+                var retryCount = 5;
+                if (!string.IsNullOrWhiteSpace(Configuration["EventBus:RetryCount"]))
+                    retryCount = int.Parse(Configuration["EventBus:RetryCount"]);
+
+                return new RabbitMQConnection(factory, retryCount, logger);
+            });
+
+            services.AddSingleton<RabbitMQProducer>();
+
+            #endregion
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -46,6 +84,8 @@ namespace OnlineAuctionApp.AuctionAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OnlineAuctionApp.AuctionAPI v1"));
             }
+
+            app.UseCors("AllowOrigin");
 
             app.UseRouting();
 

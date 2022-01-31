@@ -20,4 +20,8 @@
     <Folder Include="Entities\Abstract\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\src\Services\Commons\OnlineAuctionApp.Core\OnlineAuctionApp.Core.csproj" />
+  </ItemGroup>
+
 </Project>
