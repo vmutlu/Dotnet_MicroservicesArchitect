@@ -16,6 +16,9 @@ namespace OnlineAuctionApp.Infrastructure.DataAccess.Concrete
         }
 
         public async Task<IEnumerable<Order>> GetOrdersBySellerUserName(string userName) => 
-            await _orderContext.Orders.Where(go => go.SellerUserName == userName).ToListAsync().ConfigureAwait(false);
+            await _orderContext.Orders
+            .Where(go => go.SellerUserName == userName)
+            .ToListAsync()
+            .ConfigureAwait(false);
     }
 }

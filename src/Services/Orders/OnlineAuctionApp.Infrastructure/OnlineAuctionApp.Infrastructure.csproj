@@ -22,4 +22,8 @@
     <ProjectReference Include="..\OnlineAuctionApp.Domain\OnlineAuctionApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataAccess\Abstract\" />
+  </ItemGroup>
+
 </Project>
