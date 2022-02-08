@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OnlineAuctionApp.Domain.Entities.Concrete;
 
 namespace OnlineAuctionApp.Infrastructure.Concrete.Context
 {
@@ -8,5 +9,7 @@ namespace OnlineAuctionApp.Infrastructure.Concrete.Context
         {
 
         }
+
+        public DbSet<Order> Orders { get; set; }
     }
 }
