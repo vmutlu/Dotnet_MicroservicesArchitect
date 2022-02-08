@@ -12,7 +12,7 @@ namespace OnlineAuctionApp.Infrastructure.DataAccess.Concrete
 {
     public class Repository<T> : IRepository<T> where T : Entity
     {
-        private readonly OrderContext _orderContext;
+        protected readonly OrderContext _orderContext;
         public Repository(OrderContext orderContext) => (_orderContext) = (orderContext);
 
         public async Task<T> AddAsync(T entity)
