@@ -3,6 +3,7 @@ using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineAuctionApp.Application.Mappers;
+using OnlineAuctionApp.Application.PipelineBehaviours;
 using System.Reflection;
 
 namespace OnlineAuctionApp.Application.Extensions
@@ -16,6 +17,12 @@ namespace OnlineAuctionApp.Application.Extensions
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ExceptionBehavior<,>));
 
             #region Mapper Dependencyies Configure
 
