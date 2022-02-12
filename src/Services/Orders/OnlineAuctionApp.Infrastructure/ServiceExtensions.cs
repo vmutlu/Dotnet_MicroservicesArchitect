@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineAuctionApp.Domain.DataAccess.Abstract;
 using OnlineAuctionApp.Infrastructure.Concrete.Context;
+using OnlineAuctionApp.Infrastructure.DataAccess.Concrete;
 
 namespace OnlineAuctionApp.Infrastructure
 {
@@ -12,8 +13,8 @@ namespace OnlineAuctionApp.Infrastructure
         {
             services.AddDbContext<OrderContext>(option => option.UseSqlServer(configuration.GetConnectionString("OrderConnection"), m => m.MigrationsAssembly(typeof(OrderContext).Assembly.FullName)), ServiceLifetime.Singleton);
 
-         /*   services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-            services.AddTransient<IOrderRepository, OrderRepository>();*/
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IOrderedRepository, OrderedRepository>();
 
             return services;
         }

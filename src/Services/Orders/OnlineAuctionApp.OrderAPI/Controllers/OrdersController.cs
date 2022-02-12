@@ -30,7 +30,7 @@ namespace OnlineAuctionApp.OrderAPI.Controllers
 
             var orders = await _mediator.Send(query).ConfigureAwait(false);
 
-            if (orders.Count() is decimal.Zero)
+            if (orders.Count() == decimal.Zero)
                 return NotFound();
 
             return Ok(orders);
