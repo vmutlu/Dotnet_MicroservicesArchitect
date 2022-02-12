@@ -14,10 +14,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Handlers\" />
     <Folder Include="Mappers\" />
     <Folder Include="PipelineBehaviours\" />
     <Folder Include="Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineAuctionApp.Domain\OnlineAuctionApp.Domain.csproj" />
   </ItemGroup>
 
 </Project>
