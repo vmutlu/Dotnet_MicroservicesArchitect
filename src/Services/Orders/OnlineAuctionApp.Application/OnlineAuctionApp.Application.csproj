@@ -14,9 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mappers\" />
     <Folder Include="PipelineBehaviours\" />
-    <Folder Include="Queries\" />
   </ItemGroup>
 
   <ItemGroup>
