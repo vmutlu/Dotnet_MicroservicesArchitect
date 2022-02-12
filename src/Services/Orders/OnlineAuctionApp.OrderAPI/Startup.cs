@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using OnlineAuctionApp.Application.Extensions;
 using OnlineAuctionApp.Infrastructure;
 
 namespace OnlineAuctionApp.OrderAPI
@@ -16,6 +17,8 @@ namespace OnlineAuctionApp.OrderAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplication();
+
             services.AddInfrastructure(Configuration);
 
             services.AddControllers();
