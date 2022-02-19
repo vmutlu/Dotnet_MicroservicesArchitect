@@ -25,15 +25,15 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuctionApp.AuctionAPI", "src\Services\Auctions\OnlineAuctionApp.AuctionAPI\OnlineAuctionApp.AuctionAPI.csproj", "{ED20275A-FEA0-41C2-917C-E0C502287576}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuctionApp.Core", "..\src\Services\Commons\OnlineAuctionApp.Core\OnlineAuctionApp.Core.csproj", "{962B2332-CC77-4942-9A97-EAD46ECE185C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuctionApp.OrderAPI", "src\Services\Orders\OnlineAuctionApp.OrderAPI\OnlineAuctionApp.OrderAPI.csproj", "{7BBBECD3-B874-4E31-8B6F-3B678684EB25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuctionApp.OrderAPI", "src\Services\Orders\OnlineAuctionApp.OrderAPI\OnlineAuctionApp.OrderAPI.csproj", "{7BBBECD3-B874-4E31-8B6F-3B678684EB25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuctionApp.Domain", "src\Services\Orders\OnlineAuctionApp.Domain\OnlineAuctionApp.Domain.csproj", "{EED65377-3177-43D4-B827-81F75FDBEB1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuctionApp.Domain", "src\Services\Orders\OnlineAuctionApp.Domain\OnlineAuctionApp.Domain.csproj", "{EED65377-3177-43D4-B827-81F75FDBEB1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuctionApp.Application", "src\Services\Orders\OnlineAuctionApp.Application\OnlineAuctionApp.Application.csproj", "{B078E2CD-8401-4F3C-906D-A3D61376CAF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuctionApp.Application", "src\Services\Orders\OnlineAuctionApp.Application\OnlineAuctionApp.Application.csproj", "{B078E2CD-8401-4F3C-906D-A3D61376CAF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuctionApp.Infrastructure", "src\Services\Orders\OnlineAuctionApp.Infrastructure\OnlineAuctionApp.Infrastructure.csproj", "{45CF7F92-138C-4F6F-832B-D93E0BA70C4E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuctionApp.Infrastructure", "src\Services\Orders\OnlineAuctionApp.Infrastructure\OnlineAuctionApp.Infrastructure.csproj", "{45CF7F92-138C-4F6F-832B-D93E0BA70C4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuctionApp.Core", "src\Services\Commons\OnlineAuctionApp.Core\OnlineAuctionApp.Core.csproj", "{C4ED475D-A0E4-4196-ACF7-5A50CA7B3A15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,6 @@ Global
 		{ED20275A-FEA0-41C2-917C-E0C502287576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED20275A-FEA0-41C2-917C-E0C502287576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED20275A-FEA0-41C2-917C-E0C502287576}.Release|Any CPU.Build.0 = Release|Any CPU
-		{962B2332-CC77-4942-9A97-EAD46ECE185C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{962B2332-CC77-4942-9A97-EAD46ECE185C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{962B2332-CC77-4942-9A97-EAD46ECE185C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{962B2332-CC77-4942-9A97-EAD46ECE185C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7BBBECD3-B874-4E31-8B6F-3B678684EB25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7BBBECD3-B874-4E31-8B6F-3B678684EB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7BBBECD3-B874-4E31-8B6F-3B678684EB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -73,6 +69,10 @@ Global
 		{45CF7F92-138C-4F6F-832B-D93E0BA70C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45CF7F92-138C-4F6F-832B-D93E0BA70C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45CF7F92-138C-4F6F-832B-D93E0BA70C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4ED475D-A0E4-4196-ACF7-5A50CA7B3A15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4ED475D-A0E4-4196-ACF7-5A50CA7B3A15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4ED475D-A0E4-4196-ACF7-5A50CA7B3A15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4ED475D-A0E4-4196-ACF7-5A50CA7B3A15}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,11 +87,11 @@ Global
 		{016D600F-F8FF-42FA-A92F-5D46EF7A01D2} = {B2C1E62D-BCDE-4120-9D1C-E3D3B356C6B6}
 		{B34FC735-A5AA-4A71-A53C-FE054CCC808F} = {B2C1E62D-BCDE-4120-9D1C-E3D3B356C6B6}
 		{ED20275A-FEA0-41C2-917C-E0C502287576} = {B34FC735-A5AA-4A71-A53C-FE054CCC808F}
-		{962B2332-CC77-4942-9A97-EAD46ECE185C} = {016D600F-F8FF-42FA-A92F-5D46EF7A01D2}
 		{7BBBECD3-B874-4E31-8B6F-3B678684EB25} = {E8E23782-4F0C-45AC-A251-9FF821B307AB}
 		{EED65377-3177-43D4-B827-81F75FDBEB1B} = {E8E23782-4F0C-45AC-A251-9FF821B307AB}
 		{B078E2CD-8401-4F3C-906D-A3D61376CAF2} = {E8E23782-4F0C-45AC-A251-9FF821B307AB}
 		{45CF7F92-138C-4F6F-832B-D93E0BA70C4E} = {E8E23782-4F0C-45AC-A251-9FF821B307AB}
+		{C4ED475D-A0E4-4196-ACF7-5A50CA7B3A15} = {016D600F-F8FF-42FA-A92F-5D46EF7A01D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A30B971-6C88-486F-951C-E15F9F34EAE5}

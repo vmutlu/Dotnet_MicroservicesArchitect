@@ -16,6 +16,14 @@ services:
         - "5672:5672"
         - "15672:15672"
 
+  sourcingsqldb:
+    container_name: sourcingsqldb
+    ports:
+        - "1433:1433" 
+    environment:
+      SA_PASSWORD: "SqlDb123456?"
+      ACCEPT_EULA: "Y"
+
   onlineauctionapp.productapi:
     container_name: onlineauctionappproductapi
     environment:

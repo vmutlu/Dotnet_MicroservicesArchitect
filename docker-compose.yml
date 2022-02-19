@@ -6,6 +6,9 @@ services:
     
   rabbitmq:
     image: rabbitmq:3.8.14-management
+    
+  sourcingsqldb:
+    image: mcr.microsoft.com/mssql/server
 
   onlineauctionapp.productapi:
     image: ${DOCKER_REGISTRY-}onlineauctionappproductapi

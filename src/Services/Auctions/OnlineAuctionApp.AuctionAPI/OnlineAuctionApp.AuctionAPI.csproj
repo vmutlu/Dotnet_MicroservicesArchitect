@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\src\Services\Commons\OnlineAuctionApp.Core\OnlineAuctionApp.Core.csproj" />
+    <ProjectReference Include="..\..\Commons\OnlineAuctionApp.Core\OnlineAuctionApp.Core.csproj" />
   </ItemGroup>
 
 </Project>
