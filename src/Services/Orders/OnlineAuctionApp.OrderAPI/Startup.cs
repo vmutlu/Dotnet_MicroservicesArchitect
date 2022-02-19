@@ -67,6 +67,9 @@ namespace OnlineAuctionApp.OrderAPI
                 options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
 
+            //Docker ile ayaga kaldýrýldýgýnda mapping hatasý için eklendi.
+            services.AddAutoMapper(typeof(Startup));
+
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
