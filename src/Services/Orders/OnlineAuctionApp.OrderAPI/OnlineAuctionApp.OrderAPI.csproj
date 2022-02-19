@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\src\Services\Commons\OnlineAuctionApp.Core\OnlineAuctionApp.Core.csproj" />
     <ProjectReference Include="..\OnlineAuctionApp.Application\OnlineAuctionApp.Application.csproj" />
     <ProjectReference Include="..\OnlineAuctionApp.Infrastructure\OnlineAuctionApp.Infrastructure.csproj" />
   </ItemGroup>

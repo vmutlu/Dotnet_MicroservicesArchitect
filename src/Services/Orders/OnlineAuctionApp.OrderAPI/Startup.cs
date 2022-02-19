@@ -3,9 +3,17 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using OnlineAuctionApp.Application.Extensions;
+using OnlineAuctionApp.Core.Abstract;
+using OnlineAuctionApp.Core.Concrete;
+using OnlineAuctionApp.Core.Producer;
 using OnlineAuctionApp.Infrastructure;
+using OnlineAuctionApp.OrderAPI.Consumers;
+using OnlineAuctionApp.OrderAPI.Extensions;
+using RabbitMQ.Client;
+using System;
 
 namespace OnlineAuctionApp.OrderAPI
 {
@@ -22,6 +30,37 @@ namespace OnlineAuctionApp.OrderAPI
             services.AddInfrastructure(Configuration);
 
             services.AddControllers();
+
+
+            #region Event Bus Configuration
+
+            services.AddSingleton<IRabbitMQConnection>(c =>
+            {
+                var logger = c.GetRequiredService<ILogger<RabbitMQConnection>>();
+
+                var factory = new ConnectionFactory()
+                {
+                    HostName = Configuration["EventBus:HostName"]
+                };
+
+                if (!string.IsNullOrWhiteSpace(Configuration["EventBus:UserName"]))
+                    factory.UserName = Configuration["EventBus:UserName"];
+
+                if (!string.IsNullOrWhiteSpace(Configuration["EventBus:Password"]))
+                    factory.Password = Configuration["EventBus:Password"];
+
+                var retryCount = 5;
+                if (!string.IsNullOrWhiteSpace(Configuration["EventBus:RetryCount"]))
+                    retryCount = Convert.ToInt32(Configuration["EventBus:RetryCount"]);
+
+                return new RabbitMQConnection(factory, retryCount, logger);
+            });
+
+            services.AddSingleton<RabbitMQProducer>();
+
+            #endregion
+
+            services.AddSingleton<OrderConsumer>();
 
             services.AddCors(options =>
             {
@@ -55,6 +94,8 @@ namespace OnlineAuctionApp.OrderAPI
             {
                 endpoints.MapControllers();
             });
+
+            app.UseEventListener();
         }
     }
 }
