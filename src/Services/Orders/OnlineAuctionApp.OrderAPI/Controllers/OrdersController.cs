@@ -36,7 +36,7 @@ namespace OnlineAuctionApp.OrderAPI.Controllers
             return Ok(orders);
         }
 
-        [HttpPost("GetOrdersByUserName")]
+        [HttpPost]
         [ProducesResponseType(typeof(OrderResponse), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<OrderResponse>> Create([FromBody] OrderCreateCommand orderCommand) =>
             Ok(await _mediator.Send(orderCommand).ConfigureAwait(false));
