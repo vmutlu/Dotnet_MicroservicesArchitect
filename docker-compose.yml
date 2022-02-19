@@ -29,3 +29,10 @@ services:
       context: .
       dockerfile: src/Services/Orders/OnlineAuctionApp.OrderAPI/Dockerfile
 
+
+  onlineauctionapp.apigateway:
+    image: ${DOCKER_REGISTRY-}onlineauctionappapigateway
+    build:
+      context: .
+      dockerfile: src/Gateway/OnlineAuctionApp.APIGateway/Dockerfile
+
