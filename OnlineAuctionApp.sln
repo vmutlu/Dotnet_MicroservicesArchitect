@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuctionApp.Infrastruc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuctionApp.Core", "src\Services\Commons\OnlineAuctionApp.Core\OnlineAuctionApp.Core.csproj", "{C4ED475D-A0E4-4196-ACF7-5A50CA7B3A15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuctionApp.APIGateway", "src\Gateway\OnlineAuctionApp.APIGateway\OnlineAuctionApp.APIGateway.csproj", "{53A95AA8-D3DB-4A8D-BB37-C07136CA5E9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuctionApp.APIGateway", "src\Gateway\OnlineAuctionApp.APIGateway\OnlineAuctionApp.APIGateway.csproj", "{53A95AA8-D3DB-4A8D-BB37-C07136CA5E9B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuctionApp.WEBUI", "src\UI\OnlineAuctionApp.WEBUI\OnlineAuctionApp.WEBUI.csproj", "{2E67CBF9-009A-4ED7-99A6-C0C85FD1D78F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{53A95AA8-D3DB-4A8D-BB37-C07136CA5E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53A95AA8-D3DB-4A8D-BB37-C07136CA5E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53A95AA8-D3DB-4A8D-BB37-C07136CA5E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E67CBF9-009A-4ED7-99A6-C0C85FD1D78F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E67CBF9-009A-4ED7-99A6-C0C85FD1D78F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E67CBF9-009A-4ED7-99A6-C0C85FD1D78F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E67CBF9-009A-4ED7-99A6-C0C85FD1D78F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +105,7 @@ Global
 		{45CF7F92-138C-4F6F-832B-D93E0BA70C4E} = {E8E23782-4F0C-45AC-A251-9FF821B307AB}
 		{C4ED475D-A0E4-4196-ACF7-5A50CA7B3A15} = {016D600F-F8FF-42FA-A92F-5D46EF7A01D2}
 		{53A95AA8-D3DB-4A8D-BB37-C07136CA5E9B} = {2B792606-3D9B-4A9C-A4E7-AA762C9B9008}
+		{2E67CBF9-009A-4ED7-99A6-C0C85FD1D78F} = {24C5F09C-29F4-4CA6-B6F1-2C6932EA5FCA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A30B971-6C88-486F-951C-E15F9F34EAE5}
