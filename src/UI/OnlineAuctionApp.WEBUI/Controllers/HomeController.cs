@@ -19,15 +19,55 @@ namespace OnlineAuctionApp.WEBUI.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Login()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpPost]
+        public IActionResult Login(LoginModel loginModel)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        //[HttpPost]
+        //public async Task<IActionResult> Register(RegisterModel registerModel)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        AppUser appUser = new();
+        //        appUser.FirstName = registerModel.FirstName;
+        //        appUser.LastName = registerModel.LastName;
+        //        appUser.Email = registerModel.Email;
+        //        appUser.PhoneNumber = registerModel.PhoneNumber;
+        //        appUser.UserName = registerModel.UserName;
+
+        //        switch (registerModel.UserSelectTypeId)
+        //        {
+        //            case 1:
+        //                appUser.IsSeller = true;
+        //                appUser.IsBuyer = false;
+        //                break;
+        //            case 2:
+        //                appUser.IsSeller = false;
+        //                appUser.IsBuyer = true;
+        //                break;
+        //        }
+
+        //        var response = await _userManager.CreateAsync(appUser, registerModel.Password);
+        //        if (response.Succeeded)
+        //            return RedirectToAction("Login");
+
+        //        else
+        //            response.Errors.ToList().ForEach(i => { ModelState.AddModelError("", i.Description); });
+        //    }
+
+        //    return View(registerModel);
+        //}
     }
 }
