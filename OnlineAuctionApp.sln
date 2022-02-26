@@ -39,6 +39,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineAuctionApp.APIGateway
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuctionApp.WEBUI", "src\UI\OnlineAuctionApp.WEBUI\OnlineAuctionApp.WEBUI.csproj", "{2E67CBF9-009A-4ED7-99A6-C0C85FD1D78F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuctionApp.Infrastructure", "src\UI\OnlineAuctionApp.Infrastructure\OnlineAuctionApp.Infrastructure.csproj", "{93C3CB8C-CFAB-4734-8D60-EF381453784A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAuctionApp.Core", "src\UI\OnlineAuctionApp.Core\OnlineAuctionApp.Core.csproj", "{850F9D24-83B5-40B7-9EBD-B2D7A7128D4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +89,14 @@ Global
 		{2E67CBF9-009A-4ED7-99A6-C0C85FD1D78F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E67CBF9-009A-4ED7-99A6-C0C85FD1D78F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E67CBF9-009A-4ED7-99A6-C0C85FD1D78F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93C3CB8C-CFAB-4734-8D60-EF381453784A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C3CB8C-CFAB-4734-8D60-EF381453784A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C3CB8C-CFAB-4734-8D60-EF381453784A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C3CB8C-CFAB-4734-8D60-EF381453784A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{850F9D24-83B5-40B7-9EBD-B2D7A7128D4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{850F9D24-83B5-40B7-9EBD-B2D7A7128D4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{850F9D24-83B5-40B7-9EBD-B2D7A7128D4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{850F9D24-83B5-40B7-9EBD-B2D7A7128D4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,6 +118,8 @@ Global
 		{C4ED475D-A0E4-4196-ACF7-5A50CA7B3A15} = {016D600F-F8FF-42FA-A92F-5D46EF7A01D2}
 		{53A95AA8-D3DB-4A8D-BB37-C07136CA5E9B} = {2B792606-3D9B-4A9C-A4E7-AA762C9B9008}
 		{2E67CBF9-009A-4ED7-99A6-C0C85FD1D78F} = {24C5F09C-29F4-4CA6-B6F1-2C6932EA5FCA}
+		{93C3CB8C-CFAB-4734-8D60-EF381453784A} = {24C5F09C-29F4-4CA6-B6F1-2C6932EA5FCA}
+		{850F9D24-83B5-40B7-9EBD-B2D7A7128D4D} = {24C5F09C-29F4-4CA6-B6F1-2C6932EA5FCA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A30B971-6C88-486F-951C-E15F9F34EAE5}
