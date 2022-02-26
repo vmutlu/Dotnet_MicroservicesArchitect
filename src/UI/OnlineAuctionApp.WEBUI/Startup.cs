@@ -20,9 +20,31 @@ namespace OnlineAuctionApp.WEBUI
         {
             services.AddDbContext<WebApplicationContext>(option => option.UseSqlServer(Configuration.GetConnectionString("IdentityConnection"), m => m.MigrationsAssembly(typeof(WebApplicationContext).Assembly.FullName)), ServiceLifetime.Singleton);
 
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddDefaultTokenProviders().AddEntityFrameworkStores<WebApplicationContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 4;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+            }).AddDefaultTokenProviders().AddEntityFrameworkStores<WebApplicationContext>();
 
             services.AddControllersWithViews();
+
+            //services.AddAuthentication(Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            //{
+            //    options.Cookie.Name = "LoginCookie";
+            //    options.LoginPath = "Home/Login";
+            //    options.LogoutPath = "Home/Logout";
+            //    options.ExpireTimeSpan = System.TimeSpan.FromDays(180);
+            //    options.SlidingExpiration = false;
+            //});
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/Home/Login";
+                options.LogoutPath = $"/Home/Logout";
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,10 +59,14 @@ namespace OnlineAuctionApp.WEBUI
 
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

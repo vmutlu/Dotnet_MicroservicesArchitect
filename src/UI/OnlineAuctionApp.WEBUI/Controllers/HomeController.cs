@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OnlineAuctionApp.Core.Entities;
@@ -21,6 +22,7 @@ namespace OnlineAuctionApp.WEBUI.Controllers
             _signInManager = signInManager;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
@@ -32,9 +34,33 @@ namespace OnlineAuctionApp.WEBUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginModel loginModel)
+        public async Task<IActionResult> Login(LoginModel loginModel)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                var userExists = await _userManager.FindByEmailAsync(loginModel.Email).ConfigureAwait(false);
+
+                if (userExists is not null)
+                {
+                    await _signInManager.SignOutAsync();
+
+                    var result = await _signInManager.PasswordSignInAsync(userExists, loginModel.Password, false, false).ConfigureAwait(false);
+
+                    if (result.Succeeded)
+                        return RedirectToAction("Index");
+
+                    else
+                        ModelState.AddModelError("", "Email address or password is not valid. 👌");
+                }
+            }
+            return View(loginModel);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync().ConfigureAwait(false);
+
+            return RedirectToAction("Login");
         }
 
         public IActionResult Register()
@@ -80,7 +106,7 @@ namespace OnlineAuctionApp.WEBUI.Controllers
                     break;
             }
 
-            return await _userManager.CreateAsync(appUser, registerModel.Password);            
+            return await _userManager.CreateAsync(appUser, registerModel.Password);
         }
     }
 }
