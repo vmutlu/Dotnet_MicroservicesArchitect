@@ -1,4 +1,5 @@
 ﻿@model OnlineAuctionApp.WEBUI.Models.RegisterModel
+@using OnlineAuctionApp.WEBUI.Enums
 
 @{
     ViewData["Title"] = "Register";
@@ -8,8 +9,7 @@
 <br />
 <h4>User Register Screen</h4>
 <hr />
-
-<div class="content">
+<div class="container">
     <div class="col-md-4 offset-md-4">
         <form asp-action="Register" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -43,21 +43,14 @@
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsBuyer" /> @Html.DisplayNameFor(model => model.IsBuyer)
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsSeller" /> @Html.DisplayNameFor(model => model.IsSeller)
-                </label>
-            </div>
             <div class="form-group">
-                <label asp-for="UserSelectTypeId" class="control-label"></label>
-                <input asp-for="UserSelectTypeId" class="form-control" />
-                <span asp-validation-for="UserSelectTypeId" class="text-danger"></span>
+                <label class="control-label">User Type Select</label>
+                <select class="custom-select" id="UserSelectType">
+                    <option value="@UserType.Buyer">Is Buyer</option>
+                    <option value="@UserType.Seller">Is Seller</option>
+                </select>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

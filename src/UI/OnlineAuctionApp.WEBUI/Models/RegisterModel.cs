@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using OnlineAuctionApp.WEBUI.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineAuctionApp.WEBUI.Models
 {
@@ -43,6 +44,6 @@ namespace OnlineAuctionApp.WEBUI.Models
         [Display(Name = "IsSeller")]
         public bool IsSeller { get; set; }//tedarikci/satıcı mı
 
-        public int UserSelectTypeId { get; set; }
+        public UserType UserSelectType { get; set; }
     }
 }
