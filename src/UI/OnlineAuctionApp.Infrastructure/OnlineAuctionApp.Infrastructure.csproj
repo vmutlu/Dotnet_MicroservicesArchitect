@@ -13,4 +13,8 @@
     <ProjectReference Include="..\OnlineAuctionApp.Core\OnlineAuctionApp.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DataAccess\Abstract\" />
+  </ItemGroup>
+
 </Project>
