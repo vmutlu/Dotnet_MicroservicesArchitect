@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using OnlineAuctionApp.WEBUI.Models;
 
 namespace OnlineAuctionApp.WEBUI.Controllers
 {
@@ -14,6 +15,28 @@ namespace OnlineAuctionApp.WEBUI.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(AuctionModel auctionModel)
+        {
+            return View(auctionModel);
+        }
+
+        public IActionResult Detail()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Detail(AuctionModel auctionModel)
+        {
+            return View(auctionModel);
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿@*
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Employee> SignInManager
+@inject UserManager<Employee> UserManager
+
+@*
     resource template: https://github.com/ColorlibHQ/AdminLTE/tree/master/pages
 *@
 
@@ -189,64 +193,70 @@
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-                             with font-awesome or any other icon font library -->
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Dashboard
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="./index.html" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v1</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v2</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="./index3.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v3</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Widgets
-                                    <span class="right badge badge-danger">New</span>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-action="Register">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                   Register
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link" asp-action="Login">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                   Login
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                        </li>
+                       
+                         @if (SignInManager.IsSignedIn(User))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-item nav-link">
+                                    <img src="~/dist/img/avatar.png" class="img-circle elevation-2" alt="User Image" style="width:40px;">
+                                    <p>
+                                        Welcome To " @UserManager.GetUserName(User) "
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-copy"></i>
+                                    <p>
+                                        Auction Operations
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a asp-controller="Auction" asp-action="Index" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Auction List</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a asp-controller="Auction" asp-action="Create" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Auction Create</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-item nav-link" asp-controller="Home" asp-action="Logout">
+                                    <i class="nav-icon far fa-user"></i>
+                                    <p>
+                                        Logout
+                                    </p>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-item nav-link" asp-action="Register">
+                                    <i class="nav-icon far fa-user"></i>
+                                    <p>
+                                        Sign Up
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-item nav-link" asp-action="Login">
+                                    <i class="nav-icon far fa-user"></i>
+                                    <p>
+                                        Login
+                                    </p>
+                                </a>
+                            </li>
+                        }
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
