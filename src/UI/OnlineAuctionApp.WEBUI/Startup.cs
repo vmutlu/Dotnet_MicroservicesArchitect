@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OnlineAuctionApp.Core.DataAccess.Abstract;
 using OnlineAuctionApp.Core.Entities;
 using OnlineAuctionApp.Infrastructure.DataAccess;
+using OnlineAuctionApp.Infrastructure.DataAccess.Concrete;
 
 namespace OnlineAuctionApp.WEBUI
 {
@@ -31,20 +33,15 @@ namespace OnlineAuctionApp.WEBUI
 
             services.AddControllersWithViews();
 
-            //services.AddAuthentication(Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-            //{
-            //    options.Cookie.Name = "LoginCookie";
-            //    options.LoginPath = "Home/Login";
-            //    options.LogoutPath = "Home/Logout";
-            //    options.ExpireTimeSpan = System.TimeSpan.FromDays(180);
-            //    options.SlidingExpiration = false;
-            //});
-
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = $"/Home/Login";
                 options.LogoutPath = $"/Home/Logout";
             });
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

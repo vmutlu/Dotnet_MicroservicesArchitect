@@ -1,15 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using OnlineAuctionApp.Core.DataAccess.Abstract;
 using OnlineAuctionApp.WEBUI.Models;
+using System.Threading.Tasks;
 
 namespace OnlineAuctionApp.WEBUI.Controllers
 {
     public class AuctionController : Controller
     {
         private readonly ILogger<AuctionController> _logger;
-        public AuctionController(ILogger<AuctionController> logger)
+        private readonly IUserRepository _userRepository;
+        public AuctionController(ILogger<AuctionController> logger, IUserRepository userRepository)
         {
             _logger = logger;
+            _userRepository = userRepository;
         }
 
         public IActionResult Index()
@@ -17,8 +21,16 @@ namespace OnlineAuctionApp.WEBUI.Controllers
             return View();
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            var productList = await _productClient.GetProducts();
+
+            if (productList.IsSuccess)
+                ViewBag.ProductList = productList.Data;
+
+            var userList = await _userRepository.GetAllAsync().ConfigureAwait(false);
+            ViewBag.UserList = userList;
+
             return View();
         }
 

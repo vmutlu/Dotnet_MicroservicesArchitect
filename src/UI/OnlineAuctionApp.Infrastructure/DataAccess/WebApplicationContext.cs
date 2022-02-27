@@ -9,5 +9,6 @@ namespace OnlineAuctionApp.Infrastructure.DataAccess
         public WebApplicationContext(DbContextOptions<WebApplicationContext> dbContextOptions) : base(dbContextOptions){}
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Employee> Employees { get; set; }
     }
 }
