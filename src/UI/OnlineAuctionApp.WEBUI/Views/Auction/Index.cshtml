@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AuctionModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="conteiner">
+    <div>
+        class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Active Auctions</h3>
+                </div>
+
+                <div class="card-body">
+                    <table id="example" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Quantity</th>
+                                <th>Started Date</th>
+                                <th>Finished Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td>@item.Description</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.StartedDate.ToShortDateString()</td>
+                                    <td>@item.FinishedDate.ToShortDateString()</td>
+                                    <td>
+                                        <a asp-controller="Auction" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info">Detail</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
