@@ -9,6 +9,7 @@ using OnlineAuctionApp.Core.DataAccess.Abstract;
 using OnlineAuctionApp.Core.Entities;
 using OnlineAuctionApp.Infrastructure.DataAccess;
 using OnlineAuctionApp.Infrastructure.DataAccess.Concrete;
+using OnlineAuctionApp.WEBUI.Clients;
 
 namespace OnlineAuctionApp.WEBUI
 {
@@ -42,6 +43,14 @@ namespace OnlineAuctionApp.WEBUI
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddHttpClient();
+
+            services.AddHttpClient<ProductClient>();
+
+            services.AddHttpClient<AuctionClient>();
+
+            services.AddHttpClient<BidClient>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
