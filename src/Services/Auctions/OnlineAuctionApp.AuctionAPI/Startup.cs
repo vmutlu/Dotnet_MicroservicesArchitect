@@ -74,9 +74,10 @@ namespace OnlineAuctionApp.AuctionAPI
 
             #endregion
 
+            //cors hatasý alýnýresa uý adresine istisna tanýmla
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
             });
 
             services.AddSignalR();
