@@ -6,7 +6,7 @@ namespace OnlineAuctionApp.WEBUI.Models
 {
     public class AuctionModel
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [Required(ErrorMessage = "Please fill Name")]
         public string Name { get; set; }
