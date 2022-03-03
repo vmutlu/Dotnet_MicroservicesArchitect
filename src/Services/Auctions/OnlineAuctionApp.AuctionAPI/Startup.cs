@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using OnlineAuctionApp.AuctionAPI.DataAccess.Abstract;
 using OnlineAuctionApp.AuctionAPI.DataAccess.Concrete;
+using OnlineAuctionApp.AuctionAPI.Hubs;
 using OnlineAuctionApp.AuctionAPI.Settings.Abstract;
 using OnlineAuctionApp.AuctionAPI.Settings.Concrete;
 using OnlineAuctionApp.Core.Abstract;
@@ -77,6 +78,8 @@ namespace OnlineAuctionApp.AuctionAPI
             {
                 options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
+
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -97,6 +100,7 @@ namespace OnlineAuctionApp.AuctionAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<AuctionHub>("/auctionHub");
             });
         }
     }
