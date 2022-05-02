@@ -51,6 +51,11 @@ namespace OnlineAuctionApp.WEBUI
             services.AddHttpClient<AuctionClient>();
 
             services.AddHttpClient<BidClient>();
+
+            services.AddSession(opt =>
+            {
+                opt.IdleTimeout = System.TimeSpan.FromMinutes(120);
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -65,6 +70,8 @@ namespace OnlineAuctionApp.WEBUI
 
                 app.UseHsts();
             }
+
+            app.UseSession();
 
             app.UseHttpsRedirection();
 

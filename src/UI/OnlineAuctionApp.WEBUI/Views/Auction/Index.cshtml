@@ -36,7 +36,15 @@
                                     <td>@item.StartedDate.ToShortDateString()</td>
                                     <td>@item.FinishedDate.ToShortDateString()</td>
                                     <td>
-                                        <a asp-controller="Auction" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info">Detail</a>
+                                        @if (item.Status == (int)decimal.One)
+                                        {
+                                            <a class="btn btn-danger">Auction Closed</a>
+                                        }
+
+                                        else
+                                        {
+                                            <a asp-controller="Auction" asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info">Detail</a>
+                                        }
                                     </td>
                                 </tr>
                             }

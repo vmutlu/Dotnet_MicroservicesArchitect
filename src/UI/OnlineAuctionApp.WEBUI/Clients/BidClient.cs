@@ -16,12 +16,12 @@ namespace OnlineAuctionApp.WEBUI.Clients
         public BidClient(HttpClient client)
         {
             _client = client;
-            _client.BaseAddress = new Uri(CommonInfo.AuctionBaseAddress);
+            _client.BaseAddress = new Uri(CommonInfo.BaseAddress);
         }
 
         public async Task<Result<List<BidModel>>> GetBidsByAuctionId(string id)
         {
-            var response = await _client.GetAsync("/api/v1/Bids/GetBidsByAuctionId?id=" + id).ConfigureAwait(false);
+            var response = await _client.GetAsync("/Bids/" + id).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
                 var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -37,7 +37,7 @@ namespace OnlineAuctionApp.WEBUI.Clients
 
         public async Task<Result<List<BidModel>>> GetAllBidsByAuctionId(string id)
         {
-            var response = await _client.GetAsync("/api/v1/Bids/GetAllBidsByAuctionId?id=" + id).ConfigureAwait(false);
+            var response = await _client.GetAsync("/Bids/GetAllBidsByAuctionId/" + id).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
                 var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -57,7 +57,7 @@ namespace OnlineAuctionApp.WEBUI.Clients
             var content = new StringContent(dataAsString);
             content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
 
-            var response = await _client.PostAsync("/api/v1/Bids", content).ConfigureAwait(false);
+            var response = await _client.PostAsync("/Bids", content).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
                 var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);

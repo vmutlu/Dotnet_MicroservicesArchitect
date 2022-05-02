@@ -39,6 +39,29 @@ namespace OnlineAuctionApp.AuctionAPI.DataAccess.Concrete
             return bids;
         }
 
+        public async Task<List<Bid>> GetAllBidsByAuctionId(string id)
+        {
+            FilterDefinition<Bid> filter = Builders<Bid>.Filter.Eq(p => p.AuctionId, id);
+
+            List<Bid> bids = await _auctionContext
+                          .Bids
+                          .Find(filter)
+                          .ToListAsync();
+
+            bids = bids.OrderByDescending(a => a.CreatedDate)
+                                   .Select(a => new Bid
+                                   {
+                                       AuctionId = a.AuctionId,
+                                       Price = a.Price,
+                                       CreatedDate = a.CreatedDate,
+                                       SellerUserName = a.SellerUserName,
+                                       ProductId = a.ProductId,
+                                       Id = a.Id
+                                   }).ToList();
+
+            return bids;
+        }
+
         /// <summary>
         /// Winning Bid
         /// </summary>

@@ -46,6 +46,15 @@ namespace OnlineBidApp.BidAPI.Controllers
             return Ok(bid);
         }
 
+        [HttpGet("GetAllBidsByAuctionId")]
+        [ProducesResponseType(typeof(List<Bid>), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<IEnumerable<Bid>>> GetAllBidsByAuctionId(string id)
+        {
+            var bids = await _repository.GetAllBidsByAuctionId(id).ConfigureAwait(false);
+
+            return Ok(bids);
+        }
+
         [HttpPost]
         [ProducesResponseType(statusCode: (int)HttpStatusCode.Created)]
         public async Task<ActionResult> SendBid([FromBody] Bid bid)

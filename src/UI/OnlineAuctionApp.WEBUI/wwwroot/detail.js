@@ -26,7 +26,7 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     var user = document.getElementById("SellerUserName").value;
     var productId = document.getElementById("ProductId").value;
     var sellerUser = user;
-    var bid = document.getElementById("exampleInputPrice").value;
+    var bid = document.getElementById("inputPrice").value;
 
     var sendBidRquest = {
         AuctionId: auctionId,
@@ -88,7 +88,7 @@ function SendCompleteBid(model) {
     var id = auctionId;
     $.ajax({
 
-        url: "/Auction/CompleteBid",
+        url: "/Auction/SendBid",
         type: "POST",
         data: { id: id },
         success: function (response) {

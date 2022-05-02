@@ -97,6 +97,18 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
+      "DownstreamPathTemplate": "/api/v1/Bids/GetAllBidsByAuctionId/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "onlineauctionappauctionapi",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/Bids/GetAllBidsByAuctionId/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
       "DownstreamPathTemplate": "/api/v1/Orders/GetOrdersByUserName/{userName}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [

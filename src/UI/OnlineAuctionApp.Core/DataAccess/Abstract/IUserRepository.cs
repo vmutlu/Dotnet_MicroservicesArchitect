@@ -2,7 +2,7 @@
 
 namespace OnlineAuctionApp.Core.DataAccess.Abstract
 {
-    public interface IUserRepository : IRepository<Employee>
+    public interface IUserRepository : IRepository<ApplicationUser>
     {
     }
 }

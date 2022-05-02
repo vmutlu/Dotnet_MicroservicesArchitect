@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -47,7 +48,10 @@ namespace OnlineAuctionApp.WEBUI.Controllers
                     var result = await _signInManager.PasswordSignInAsync(userExists, loginModel.Password, false, false).ConfigureAwait(false);
 
                     if (result.Succeeded)
+                    {
+                        HttpContext.Session.SetString("IsAdmin", userExists.IsAdmin.ToString());
                         return RedirectToAction("Index");
+                    }
 
                     else
                         ModelState.AddModelError("", "Email address or password is not valid. 👌");

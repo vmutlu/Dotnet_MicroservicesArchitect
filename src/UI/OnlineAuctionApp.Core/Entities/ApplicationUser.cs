@@ -8,5 +8,6 @@
         //Seller or Buyer Users
         public bool IsSeller { get; set; }
         public bool IsBuyer { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }

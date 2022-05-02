@@ -18,9 +18,9 @@ namespace OnlineAuctionApp.Infrastructure.DataAccess.Seeds
             {
                 webAppContext.Database.Migrate();
 
-                if (!webAppContext.Employees.Any())
+                if (!webAppContext.ApplicationUsers.Any())
                 {
-                    webAppContext.Employees.AddRange(GetPreconfiguredOrders());
+                    webAppContext.ApplicationUsers.AddRange(GetPreconfiguredOrders());
                     await webAppContext.SaveChangesAsync().ConfigureAwait(false);
                 }
             }
@@ -40,15 +40,14 @@ namespace OnlineAuctionApp.Infrastructure.DataAccess.Seeds
             }
         }
 
-        private static IEnumerable<Employee> GetPreconfiguredOrders()
+        private static IEnumerable<ApplicationUser> GetPreconfiguredOrders()
         {
-            return new List<Employee>()
+            return new List<ApplicationUser>()
             {
-               new Employee
+               new ApplicationUser
                {
                    FirstName ="User_One",
                    LastName="UserLastName_One",
-                   IsActive = true,
                    IsAdmin =false,
                    IsSeller = true
                }

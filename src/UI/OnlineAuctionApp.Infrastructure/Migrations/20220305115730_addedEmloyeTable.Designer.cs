@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineAuctionApp.Infrastructure.DataAccess;
 
 namespace OnlineAuctionApp.Infrastructure.Migrations
 {
     [DbContext(typeof(WebApplicationContext))]
-    partial class WebApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220305115730_addedEmloyeTable")]
+    partial class addedEmloyeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,7 +174,7 @@ namespace OnlineAuctionApp.Infrastructure.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsAdmin")
+                    b.Property<bool>("IsAdnin")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsBuyer")

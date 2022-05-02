@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using OnlineAuctionApp.Core.DataAccess.Abstract;
+using OnlineAuctionApp.Core.Response.Concrete;
 using OnlineAuctionApp.WEBUI.Clients;
 using OnlineAuctionApp.WEBUI.Models;
 using System;
@@ -12,14 +14,16 @@ namespace OnlineAuctionApp.WEBUI.Controllers
     {
         private readonly AuctionClient _auctionClient;
         private readonly ProductClient _productClient;
+        private readonly BidClient _bidClient;
         private readonly ILogger<AuctionController> _logger;
         private readonly IUserRepository _userRepository;
-        public AuctionController(ILogger<AuctionController> logger, IUserRepository userRepository, AuctionClient auctionClient, ProductClient productClient)
+        public AuctionController(ILogger<AuctionController> logger, IUserRepository userRepository, AuctionClient auctionClient, ProductClient productClient, BidClient bidClient)
         {
             _logger = logger;
             _userRepository = userRepository;
             _auctionClient = auctionClient;
             _productClient = productClient;
+            _bidClient = bidClient;
         }
 
         public async Task<IActionResult> Index()
@@ -55,7 +59,7 @@ namespace OnlineAuctionApp.WEBUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(AuctionModel auctionModel)
         {
-            auctionModel.Status = (int)decimal.One;
+            auctionModel.Status = default(int);
             auctionModel.CreatedDate = DateTime.Now;
 
             var createAuction = await _auctionClient.CreateAuction(auctionModel).ConfigureAwait(false);
@@ -65,15 +69,40 @@ namespace OnlineAuctionApp.WEBUI.Controllers
             return View(auctionModel);
         }
 
-        public IActionResult Detail()
+        public async Task<IActionResult> Detail(string id)
         {
-            return View();
+            var model = new AuctionBidModel();
+
+            var auctionResponse = await _auctionClient.GetAuctionById(id).ConfigureAwait(false);
+            var bidResponse = await _bidClient.GetAllBidsByAuctionId(id).ConfigureAwait(false);
+
+            model.SellerUserName = HttpContext.User?.Identity?.Name;
+            model.AuctionId = auctionResponse.Data.Id;
+            model.ProductId = auctionResponse.Data.ProductId;
+            model.Bids = bidResponse.Data;
+
+            var isAdmin = HttpContext.Session.GetString("IsAdmin");
+            model.IsAdmin = Convert.ToBoolean(isAdmin);
+
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Detail(AuctionModel auctionModel)
+        public async Task<Result<string>> SendBid(BidModel model)
         {
-            return View(auctionModel);
+            model.CreatedAt = DateTime.Now;
+
+            var sendBidResponse = await _bidClient.SendBid(model).ConfigureAwait(false);
+
+            return sendBidResponse;
+        }
+        
+        [HttpPost]
+        public async Task<Result<string>> CompleteBid(string id)
+        {
+            var completeBidResponse = await _auctionClient.CompleteBid(id).ConfigureAwait(false);
+
+            return completeBidResponse;
         }
     }
 }

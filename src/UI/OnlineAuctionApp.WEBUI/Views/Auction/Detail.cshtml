@@ -24,6 +24,7 @@
 
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary" id=sendButton"">Submit</button>
+                        <button type="submit" class="btn btn-danger" id=finishButton"">Finish</button>
                     </div>
                 </form>
             </div>
@@ -42,15 +43,19 @@
                         <tr style="background-color:darkgray">
                             <th>Auction UserName</th>
                             <th>Price</th>
-                            <th>Quantity</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Veysel</td>
-                            <td>10 ₺</td>
-                            <td>1</td>
-                        </tr>
+                    <tbody class="bidLine">
+                   @if (Model.Bids is not null)
+                    {
+                        foreach (var bid in Model.Bids)
+                        {
+                            <tr>
+                                <td>@bid.SellerUserName</td>
+                                <td>@bid.Price</td>
+                            </tr>
+                        }
+                    }
                     </tbody>
                 </table>
             </div>
@@ -59,4 +64,4 @@
 </div>
 
 <script src="~/lib/microsoft-signalr/signalr.js"></script>
-<script src="~/js/views/RFQ/detail.js"></script>
+<script src="~/detail.js"></script>

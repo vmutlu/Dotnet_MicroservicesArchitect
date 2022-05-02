@@ -88,7 +88,7 @@ namespace OnlineAuctionApp.AuctionAPI.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType((int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.Accepted)]
-        public async Task<ActionResult> CompleteAuction(string id)
+        public async Task<ActionResult> CompleteAuction([FromBody] string id)
         {
             var auction = await _repository.GetById(id).ConfigureAwait(false);
             if (auction is null)

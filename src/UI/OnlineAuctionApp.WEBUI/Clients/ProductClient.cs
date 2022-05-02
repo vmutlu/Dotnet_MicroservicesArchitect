@@ -17,12 +17,12 @@ namespace OnlineAuctionApp.WEBUI.Clients
         public ProductClient(HttpClient client)
         {
             _client = client;
-            _client.BaseAddress = new Uri(CommonInfo.ProductBaseAddress);
+            _client.BaseAddress = new Uri(CommonInfo.BaseAddress);
         }
 
         public async Task<Result<List<ProductModel>>> GetProducts()
         {
-            var response = await _client.GetAsync("/api/v1/Products").ConfigureAwait(false);
+            var response = await _client.GetAsync("/Products").ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {

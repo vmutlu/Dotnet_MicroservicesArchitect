@@ -75,10 +75,10 @@ namespace OnlineAuctionApp.AuctionAPI
             #endregion
 
             //cors hatasý alýnýresa uý adresine istisna tanýmla
-            services.AddCors(options =>
-            {
-                options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            //});
 
             services.AddSignalR();
         }
@@ -92,7 +92,7 @@ namespace OnlineAuctionApp.AuctionAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "OnlineAuctionApp.AuctionAPI v1"));
             }
 
-            app.UseCors("AllowOrigin");
+           // app.UseCors("AllowOrigin");
 
             app.UseRouting();
 

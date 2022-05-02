@@ -3,7 +3,7 @@ using OnlineAuctionApp.Core.Entities;
 
 namespace OnlineAuctionApp.Infrastructure.DataAccess.Concrete
 {
-    public class UserRepository : Repository<Employee>, IUserRepository
+    public class UserRepository : Repository<ApplicationUser>, IUserRepository
     {
         private readonly WebApplicationContext _context;
 
